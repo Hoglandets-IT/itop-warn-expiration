@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension format="1.0">
-  <extension_code>iTop Extension Template</extension_code>
+  <extension_code>iTop Expiration Warning</extension_code>
   <company>Hoglandets-IT</company>
   <author><![CDATA[Höglandets IT]]></author>
   <version>1.0.0</version>
-  <label><![CDATA[iTop Extension Template]]></label>
-  <description><![CDATA[Extension Template for iTop]]></description>
+  <label><![CDATA[iTop Expiration Warning plugin]]></label>
+  <description><![CDATA[Warn about upcoming dates by configuring breakpoints and contacts]]></description>
   <mandatory>false</mandatory>
   <itop_version_min>3.0.0</itop_version_min>
-  <more_info_url>https://github.com/Hoglandets-IT/itop-template</more_info_url>
+  <more_info_url>https://github.com/Hoglandets-IT/itop-warn-expiration</more_info_url>
 </extension>
