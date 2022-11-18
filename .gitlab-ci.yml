@@ -1,0 +1,29 @@
+stages:
+  - deploy-dev
+  - deploy-prod
+
+deploy-dev:
+  stage: deploy-dev
+  tags:
+    - shell
+    - itop
+    - development
+  script:
+    - "mkdir -p ~/.gitlab-runner/backups"
+    - "cp -r ~/itop-utv.intern.hoglandet.se/public/extensions/${CI_PROJECT_NAME} ~/.gitlab-runner/backups/${CI_PROJECT_NAME}"
+    - "cp -rf ./* ~/itop-utv.intern.hoglandet.se/public/extensions/${CI_PROJECT_NAME}/"
+    - "~/itop-utv.intern.hoglandet.se/public/extensions/scripts/update_datamodel.py both"
+
+deploy-prod:
+  stage: deploy-prod
+  tags:
+    - shell
+    - itop
+    - production
+  rules:
+    - when: manual
+  script:
+    - "mkdir -p ~/.gitlab-runner/backups"
+    - "cp -r ~/hitopprod01.intern.hoglandet.se/public/extensions/${CI_PROJECT_NAME} ~/.gitlab-runner/backups/${CI_PROJECT_NAME}"
+    - "cp -rf ./* ~/hitopprod01.intern.hoglandet.se/public/extensions/${CI_PROJECT_NAME}/"
+    - "~/hitopprod01.intern.hoglandet.se/public/extensions/scripts/update_datamodel.py both"
