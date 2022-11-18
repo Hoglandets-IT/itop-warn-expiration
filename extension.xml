@@ -3,7 +3,7 @@
   <extension_code>iTop Expiration Warning</extension_code>
   <company>Hoglandets-IT</company>
   <author><![CDATA[Höglandets IT]]></author>
-  <version>1.0.0</version>
+  <version>1.0.2</version>
   <label><![CDATA[iTop Expiration Warning plugin]]></label>
   <description><![CDATA[Warn about upcoming dates by configuring breakpoints and contacts]]></description>
   <mandatory>false</mandatory>

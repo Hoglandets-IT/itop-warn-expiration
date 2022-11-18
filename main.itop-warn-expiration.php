@@ -64,8 +64,8 @@ class CheckDatepassThreshold implements iBackgroundProcess
 	public function GetPeriodicity()
 	{
 		// TODO: Change back
-		return 3600*4; // seconds
-		// return 10;
+		// return 3600*4; // seconds
+		return 10;
 	}
 
 	/**
@@ -108,7 +108,7 @@ class CheckDatepassThreshold implements iBackgroundProcess
 
 	function Process($iTimeLimit)
 	{
-		// echo "Start processing TriggerOnDatePass";
+		echo "Start processing TriggerOnDatePass";
 		// Get all TriggerOnDatePass objects
 		$oTriggerSet = new DBObjectSet(
 			DBObjectSearch::FromOQL('SELECT TriggerOnDatePass')
@@ -117,7 +117,7 @@ class CheckDatepassThreshold implements iBackgroundProcess
 		// Loop over objects to handle TriggerOnDatePass
 		while ($oTrigger = $oTriggerSet->Fetch())
 		{
-			// echo "Start loop";
+			echo "Start loop";
 			// Check for timeout
 			if (time() > $iTimeLimit)
 			{
@@ -138,27 +138,35 @@ class CheckDatepassThreshold implements iBackgroundProcess
 				)
 			);
 
+			$oLinkedActions = $oTrigger->Get('action_list');
 
-			// For each object
-			while ($oObject = $oObjectSet->Fetch())
+			if ($oLinkedActions->Count() > 0)
 			{
-				// echo "Start inner loop";
-				if ($this->HasBeenNotified($oTrigger, $oObject))
+				// For each object
+				while ($oObject = $oObjectSet->Fetch())
 				{
-					// echo "Already notified";
-					continue;
-				}
-				// echo "Notifying";
-				$oTrigger->DoActivate($oObject->ToArgs('this'));
+					echo "Start inner loop";
+					if ($this->HasBeenNotified($oTrigger, $oObject))
+					{
+						echo "Already notified";
+						continue;
+					}
 
-				$chop = new CMDBChangeOpPlugin();
-				$chop->Set('objclass', $oTrigger->Get('target_class'));
-				$chop->Set('objkey', $oObject->GetKey());
-				$chop->Set('description', "Trigger {$oTrigger->GetKey()} sent notification");
-				$chop->DBInsert();
-				// echo "Notified";
-				// die();
+					echo "Notifying";
+					$oTrigger->DoActivate($oObject->ToArgs('this'));
+					
+					$chop = new CMDBChangeOpPlugin();
+					$chop->Set('objclass', $oTrigger->Get('target_class'));
+					$chop->Set('objkey', $oObject->GetKey());
+					$chop->Set('description', "Trigger {$oTrigger->GetKey()} sent notification");
+					$chop->DBInsert();
+					// echo "Notified";
+					// die();
+				}
 			}
-		}
+			else {
+				echo "No connected actions";
+			}
+		}	
 	}
 }

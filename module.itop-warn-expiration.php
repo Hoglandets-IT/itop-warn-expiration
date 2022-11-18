@@ -2,7 +2,7 @@
 
 SetupWebPage::AddModule(
 	__FILE__,
-	'itop-warn-expiration/1.0.0',
+	'itop-warn-expiration/1.0.1',
 	array(
 		'label' => 'iTop Extension Template',
 		'category' => 'business',
