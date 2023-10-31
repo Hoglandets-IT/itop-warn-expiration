@@ -1,4 +1,5 @@
 stages:
+  - upload
   - deploy-dev
   - deploy-prod
 
@@ -27,3 +28,10 @@ deploy-prod:
     - "cp -r ~/hitopprod01.intern.hoglandet.se/public/extensions/${CI_PROJECT_NAME} ~/.gitlab-runner/backups/${CI_PROJECT_NAME}"
     - "cp -rf ./* ~/hitopprod01.intern.hoglandet.se/public/extensions/${CI_PROJECT_NAME}/"
     - "~/hitopprod01.intern.hoglandet.se/public/extensions/scripts/update_datamodel.py both"
+
+include:
+  - project: 'intern/gitlab/ci-templates'
+    ref: master
+  file: 'templates/composer.yml'
+
+
