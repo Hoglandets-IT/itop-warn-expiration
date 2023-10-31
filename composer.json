@@ -7,9 +7,9 @@
       "hoglandetsit\\iTop\\Extension\\": "src"
     }
   },
-  "name": "hoglandetsit/itop-warn-expiration",
+  "name": "hoglandets-it/itop-warn-expiration",
   "type": "itop-extension",
-  "description": "Warn about expiration dates on objects"
+  "description": "Warn about expiration dates on objects",
   "require": {
     "composer-runtime-api": "^2.0",
     "composer/installers": ">=1"
