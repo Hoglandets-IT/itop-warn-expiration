@@ -78,7 +78,7 @@ class CheckDatepassThreshold implements iBackgroundProcess
 	 * @throws \CoreException
 	 * @throws \Exception
 	 */
-	public function HasBeenNotified(TriggerOnDatePass $oTrigger, Certificate $oObject) : bool {
+	public function HasBeenNotified(TriggerOnDatePass $oTrigger, cmdbAbstractObject $oObject) : bool {
 		$watchAttr = strval($oTrigger->Get('watch_attribute'));
 		$oExpDate = $oObject->Get($watchAttr);
 		
