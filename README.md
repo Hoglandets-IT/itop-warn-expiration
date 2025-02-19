@@ -1,3 +1,7 @@
+<h1 style="color: orange;" color="orange">REPO DEPRECATED</h1>
+<b style="color: red;">This repo is no longer being updated, and has moved to https://github.com/kommunkod/HIT.Itop.WarnExpiration</b>
+
+
 # iTop Warn Expiration
 Trigger class to check if a date on a given object is approaching expiration. Adds an additional Trigger to the Notification flow and runs with cron every few hours. Notifies once per object on the following conditions:
 
